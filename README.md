@@ -6,16 +6,18 @@ A tool that converts the XML report produced by JetBrains command line InspectCo
 The free JetBrains CLI InspectCode tool produces an XML report which is meant for integration with other software tools (CI/CD).
 However, developers may not have any other tools and/or want to inspect this output directly.
 
-Using the script provided, the initial XML report is converted into an HTML report which leverages libraries popular frontend libraries such us Bootstrap and Bootstrap-table to beautify the output and provide searching and filtering capabilities.
+Using the script provided, the initial XML report is converted into an HTML report which leverages popular frontend libraries such us Bootstrap and Bootstrap-table to beautify the output and provide searching and filtering capabilities.
 
-This work is inspired by scripts created by Maarten Balliauw ([@maartenba](https://github.com/maartenba)).
+This work is inspired by scripts created by Maarten Balliauw ([maartenba](https://github.com/maartenba)).
 
 ## Usage/Examples
-
-Assuming both the script and the XML report are in the same directory, type the following command in a terminal window:
-
-```powershell
-PS> .\Create-Report.ps1 .\NameOfResharperCLTReport.xml
+Create the XML report with JetBrains InspectCode tool. This tool offers several options but, as an example, the following command will inspect the `.cs` files a project named `FancyProjectName` included in a solution stored in `FullPathToFancySolution`. After running, the tool will provide a report called `InspectCodeResult.xml` in the root of the solution path:
+````Powershell
+PS> jb inspectcode --build --project=FancyProjectName --no-swea --format=xml --output=InspectCodeResult.xml --include=**\*.cs "FullPathToFancySolution"
+````
+Then, navigate to folder where `Create-Report.ps1` script is and run the following command: 
+```Powershell
+PS> .\Create-Report.ps1 "PathToInspectCodeResult.xml"
 ```
 
 ## Screenshots
